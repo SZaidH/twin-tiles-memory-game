@@ -1,10 +1,13 @@
 import "./App.css";
+import Game from "./components/Game";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Twin Tiles Game</h1>
-    </>
+    <div className="container flex flex-col justify-center items-center text-center">
+      <Header />
+      <Game />
+    </div>
   );
 }
 
