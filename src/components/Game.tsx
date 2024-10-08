@@ -26,7 +26,7 @@ const Game = () => {
 
   return (
     <main>
-      <ResetGame cards={cards} setCards={setCards} />
+      <ResetGame cards={cards} setCards={setCards} setFlipped={setFlipped} />
       <div className="card-container grid grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div

@@ -3,12 +3,18 @@ import { SortCards } from "../utils/SortCards";
 interface ResetGameProps {
   cards: string[];
   setCards: React.Dispatch<React.SetStateAction<string[]>>;
+  setFlipped: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
-const ResetGame: React.FC<ResetGameProps> = ({ cards, setCards }) => {
+const ResetGame: React.FC<ResetGameProps> = ({
+  cards,
+  setCards,
+  setFlipped,
+}) => {
   //Function to shuffle the cards
   const handleReset = () => {
-    const resetCards = [...cards];
+    const resetCards: string[] = [...cards];
+    setFlipped(new Array(cards.length).fill(false));
     setCards(SortCards(resetCards));
     console.log("hello");
   };
