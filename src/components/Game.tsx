@@ -23,20 +23,30 @@ const Game = () => {
   const handleCardClick = (index: number) => {
     if (flipped[index]) return;
 
+    // Flips the selected card
     const flippedCards: boolean[] = [...flipped];
     flippedCards[index] = true;
-
-    setFlippedIndices((prev) => [...prev, index]);
     setFlipped(flippedCards);
 
-    if (flippedIndices.length >= 2) {
-      const resetFlipped: boolean[] = flippedCards.map((_, index) =>
-        index === index || index === flippedIndices[0]
-          ? false
-          : flippedCards[index]
-      );
-      setFlipped(resetFlipped);
-      setFlippedIndices([]);
+    // Adds the card index to the flippedIndices array
+    const cardIndices: number[] = [...flippedIndices, index];
+    setFlippedIndices(cardIndices);
+
+    if (cardIndices.length === 2) {
+      const [firstIndex, secondIndex] = cardIndices;
+
+      // Check if the two flipped cards match
+      if (cards[firstIndex] === cards[secondIndex]) {
+        setFlippedIndices([]);
+      } else {
+        setTimeout(() => {
+          const resetFlipped: boolean[] = [...flippedCards];
+          resetFlipped[firstIndex] = false;
+          resetFlipped[secondIndex] = false;
+          setFlipped(resetFlipped);
+          setFlippedIndices([]);
+        }, 1000);
+      }
     }
   };
 
