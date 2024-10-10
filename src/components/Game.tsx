@@ -17,16 +17,37 @@ const Game = () => {
   const [flipped, setFlipped] = useState<boolean[]>(
     new Array(initialCards.length).fill(false)
   );
+  // State for counting the flipped card using their index
+  const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
 
   const handleCardClick = (index: number) => {
-    const cardFlip: boolean[] = [...flipped];
-    cardFlip[index] = !cardFlip[index];
-    setFlipped(cardFlip);
+    if (flipped[index]) return;
+
+    const flippedCards: boolean[] = [...flipped];
+    flippedCards[index] = true;
+
+    setFlippedIndices((prev) => [...prev, index]);
+    setFlipped(flippedCards);
+
+    if (flippedIndices.length >= 2) {
+      const resetFlipped: boolean[] = flippedCards.map((_, index) =>
+        index === index || index === flippedIndices[0]
+          ? false
+          : flippedCards[index]
+      );
+      setFlipped(resetFlipped);
+      setFlippedIndices([]);
+    }
   };
 
   return (
     <main>
-      <ResetGame cards={cards} setCards={setCards} setFlipped={setFlipped} />
+      <ResetGame
+        cards={cards}
+        setCards={setCards}
+        setFlipped={setFlipped}
+        setFlippedIndices={setFlippedIndices}
+      />
       <div className="card-container grid grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div

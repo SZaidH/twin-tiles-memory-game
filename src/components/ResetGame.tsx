@@ -4,18 +4,21 @@ interface ResetGameProps {
   cards: string[];
   setCards: React.Dispatch<React.SetStateAction<string[]>>;
   setFlipped: React.Dispatch<React.SetStateAction<boolean[]>>;
+  setFlippedIndices: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const ResetGame: React.FC<ResetGameProps> = ({
   cards,
   setCards,
   setFlipped,
+  setFlippedIndices,
 }) => {
   //Function to shuffle the cards
   const handleReset = () => {
     const resetCards: string[] = [...cards];
     setFlipped(new Array(cards.length).fill(false));
     setCards(SortCards(resetCards));
+    setFlippedIndices([]);
     console.log("hello");
   };
 
