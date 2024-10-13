@@ -19,6 +19,8 @@ const Game = () => {
   );
   // State for counting the flipped card using their index
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
+  //State for counting player turns
+  const [turns, setTurns] = useState<number>(0);
 
   const handleCardClick = (index: number) => {
     if (flipped[index]) return;
@@ -40,6 +42,7 @@ const Game = () => {
         setFlippedIndices([]);
       } else {
         setTimeout(() => {
+          setTurns((prev) => prev + 1);
           const resetFlipped: boolean[] = [...flippedCards];
           resetFlipped[firstIndex] = false;
           resetFlipped[secondIndex] = false;
@@ -52,12 +55,18 @@ const Game = () => {
 
   return (
     <main>
-      <ResetGame
-        cards={cards}
-        setCards={setCards}
-        setFlipped={setFlipped}
-        setFlippedIndices={setFlippedIndices}
-      />
+      <section className="flex justify-center">
+        <h3 className="font-secondary text-primary text-2xl p-2 mr-7">
+          Turns: <span className="text-white">{turns}</span>
+        </h3>
+        <ResetGame
+          cards={cards}
+          setCards={setCards}
+          setFlipped={setFlipped}
+          setFlippedIndices={setFlippedIndices}
+          setTurns={setTurns}
+        />
+      </section>
       <div className="card-container grid grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div

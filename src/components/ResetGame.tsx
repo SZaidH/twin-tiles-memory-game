@@ -5,6 +5,7 @@ interface ResetGameProps {
   setCards: React.Dispatch<React.SetStateAction<string[]>>;
   setFlipped: React.Dispatch<React.SetStateAction<boolean[]>>;
   setFlippedIndices: React.Dispatch<React.SetStateAction<number[]>>;
+  setTurns: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ResetGame: React.FC<ResetGameProps> = ({
@@ -12,6 +13,7 @@ const ResetGame: React.FC<ResetGameProps> = ({
   setCards,
   setFlipped,
   setFlippedIndices,
+  setTurns,
 }) => {
   //Function to shuffle the cards
   const handleReset = () => {
@@ -19,7 +21,7 @@ const ResetGame: React.FC<ResetGameProps> = ({
     setFlipped(new Array(cards.length).fill(false));
     setCards(SortCards(resetCards));
     setFlippedIndices([]);
-    console.log("hello");
+    setTurns(0);
   };
 
   return (
