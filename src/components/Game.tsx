@@ -19,8 +19,10 @@ const Game = () => {
   );
   // State for counting the flipped card using their index
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
-  //State for counting player turns
+  // State for counting player turns
   const [turns, setTurns] = useState<number>(0);
+  // State for storing correct guesses
+  const [correctGuesses, setCorrectGuesses] = useState<number>(0);
 
   const handleCardClick = (index: number) => {
     if (flipped[index]) return;
@@ -40,6 +42,17 @@ const Game = () => {
       // Check if the two flipped cards match
       if (cards[firstIndex] === cards[secondIndex]) {
         setFlippedIndices([]);
+        setCorrectGuesses((prev) => prev + 1);
+
+        if (correctGuesses + 1 === cards.length / 2) {
+          setTimeout(() => {
+            setFlipped(new Array(cards.length).fill(false));
+            setCards(SortCards(initialCards));
+            setFlippedIndices([]);
+            setTurns(0);
+            setCorrectGuesses(0);
+          }, 2000);
+        }
       } else {
         setTimeout(() => {
           setTurns((prev) => prev + 1);
@@ -76,11 +89,11 @@ const Game = () => {
           >
             {!flipped[index] ? (
               <div className="card-back">
-                <img src={cardBack} alt="Card Back" />
+                <img className="rounded-md" src={cardBack} alt="Card Back" />
               </div>
             ) : (
               <div className="card-front">
-                <img src={card} alt={`Card ${index}`} />
+                <img className="rounded-md" src={card} alt={`Card ${index}`} />
               </div>
             )}
           </div>
