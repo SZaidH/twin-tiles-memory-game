@@ -81,17 +81,17 @@ const Game = () => {
           setTurns={setTurns}
         />
       </section>
-      <div className="card-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="card-container grid grid-cols-3 gap-4 md:grid-cols-4">
         {cards.map((card, index) => (
           <div
             key={index}
             onClick={() => handleCardClick(index)}
-            className="card max-w-[90vw] sm:max-w-[40vw] md:max-w-[30vw] lg:w-56 h-auto drop-shadow-2xl cursor-pointer"
+            className="card w-32 h-40 sm:w-48 sm:h-56 md:w-56 md:h-64 drop-shadow-2xl cursor-pointer"
           >
             {!flipped[index] ? (
               <div className="card-back">
                 <img
-                  className="rounded-md w-full h-full object-cover"
+                  className="rounded-md object-cover w-full h-full"
                   src={cardBack}
                   alt="Card Back"
                 />
@@ -99,7 +99,7 @@ const Game = () => {
             ) : (
               <div className="card-front">
                 <img
-                  className="rounded-md w-full h-full object-cover"
+                  className="rounded-md object-cover w-full h-full"
                   src={card}
                   alt={`Card ${index}`}
                 />
