@@ -1,5 +1,7 @@
 # Twin Tiles: Memory game
 
+![Screenshot 2024-12-23 at 14-11-47 Twin Tiles](https://github.com/user-attachments/assets/86ce73c3-3307-44d2-aca0-92952d81962b)
+
 Twin Tiles is a simple and engaging memory game where players match pairs of cards with the same image. The goal is to flip and match all pairs of cards with the least number of turns. This project was created as part of the learning process for TypeScript, and it was built using React, Vite, TypeScript, and Tailwind CSS.
 
 ## Installation
