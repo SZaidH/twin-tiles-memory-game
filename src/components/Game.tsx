@@ -67,11 +67,12 @@ const Game = () => {
   };
 
   return (
-    <main>
-      <section className="flex justify-center">
-        <h3 className="font-secondary text-primary text-2xl p-2 mr-7">
+    <main className="p-4">
+      <section className="flex flex-wrap justify-between items-center mb-4">
+        <h3 className="font-secondary text-primary text-lg sm:text-xl md:text-2xl p-2">
           Turns: <span className="text-white">{turns}</span>
         </h3>
+
         <ResetGame
           cards={cards}
           setCards={setCards}
@@ -80,20 +81,28 @@ const Game = () => {
           setTurns={setTurns}
         />
       </section>
-      <div className="card-container grid grid-cols-4 gap-6">
+      <div className="card-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((card, index) => (
           <div
             key={index}
             onClick={() => handleCardClick(index)}
-            className="card w-56 h-64 drop-shadow-2xl"
+            className="card max-w-[90vw] sm:max-w-[40vw] md:max-w-[30vw] lg:w-56 h-auto drop-shadow-2xl cursor-pointer"
           >
             {!flipped[index] ? (
               <div className="card-back">
-                <img className="rounded-md" src={cardBack} alt="Card Back" />
+                <img
+                  className="rounded-md w-full h-full object-cover"
+                  src={cardBack}
+                  alt="Card Back"
+                />
               </div>
             ) : (
               <div className="card-front">
-                <img className="rounded-md" src={card} alt={`Card ${index}`} />
+                <img
+                  className="rounded-md w-full h-full object-cover"
+                  src={card}
+                  alt={`Card ${index}`}
+                />
               </div>
             )}
           </div>

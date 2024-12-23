@@ -26,7 +26,7 @@ const ResetGame: React.FC<ResetGameProps> = ({
 
   return (
     <button
-      className="p-2 font-secondary bg-primary text-white text-2xl rounded-md mb-6"
+      className="p-3 sm:p-4 md:p-5 text-lg sm:text-xl md:text-2xl font-secondary bg-primary text-white rounded-md mb-6 sm:mb-8 md:mb-10"
       onClick={handleReset}
     >
       Reset Game
